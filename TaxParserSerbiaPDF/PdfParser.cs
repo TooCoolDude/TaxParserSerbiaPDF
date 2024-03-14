@@ -8,6 +8,7 @@ using UglyToad.PdfPig;
 using System.Reflection.Metadata;
 using System.Text.RegularExpressions;
 using TaxParserSerbiaPDF;
+using System.Globalization;
 
 namespace TaxParserSerbiaPDF;
 public static class PdfParser
@@ -39,14 +40,14 @@ public static class PdfParser
                 var firstYear = Regex.Matches(QRsPageText, @"(?<=Порез на паушални приход зa)\s+(.*?)\s+(?=97)")[0].Value.Substring(1, 4);
                 var firstMonthStartDate = Regex.Match(taxesValuesPageText, @"(?<=Обрачуната аконтација пореза за период \nод)\s+(.*?)\s+(?=до)").Value.Substring(1, 10);
                 var firstMonthEndDate = Regex.Match(taxesValuesPageText, @"(?<=Обрачуната аконтација пореза за период \nод)\s+(.*?)\s+\((?=)").Value.Substring(16, 10);
-                var firstMonthPayment = Regex.Match(taxesValuesPageText, @"(?<=Обрачуната аконтација пореза за период \nод)\s+(.*?)\s+(?=3\.)").Value.Split(" ")[7].Replace(".", "");
-                var regularPayment = Regex.Match(taxesValuesPageText, @"(?<=пореза на доходак грађана)\s+(.*?)\s+(?=Aконтациja)").Value.Split(" ")[4].Replace(".", "");
+                var firstMonthPayment = Regex.Match(taxesValuesPageText, @"(?<=Обрачуната аконтација пореза за период \nод)\s+(.*?)\s+(?=3\.)").Value.Split(" ")[7].Replace(".", "").Replace(",", ".");
+                var regularPayment = Regex.Match(taxesValuesPageText, @"(?<=пореза на доходак грађана)\s+(.*?)\s+(?=Aконтациja)").Value.Split(" ")[4].Replace(".", "").Replace(",", ".");
 
                 taxResult.FirstYear = int.Parse(firstYear);
                 taxResult.FirstYearQRpng = base64Images[0];
                 taxResult.NextYearQRpng = base64Images[1];
-                taxResult.FirstMonthStartDate = DateTime.Parse(firstMonthStartDate);
-                taxResult.FirstMonthEndDate = DateTime.Parse(firstMonthEndDate);
+                taxResult.FirstMonthStartDate = DateTime.ParseExact(firstMonthStartDate,"dd.mm.yyyy", CultureInfo.InvariantCulture);
+                taxResult.FirstMonthEndDate = DateTime.ParseExact(firstMonthEndDate, "dd.mm.yyyy", CultureInfo.InvariantCulture);
                 taxResult.FirstMonthPayment = decimal.Parse(firstMonthPayment);
                 taxResult.RegularPayment = decimal.Parse(regularPayment);
             }
@@ -88,12 +89,12 @@ public static class PdfParser
                 var firstMonthStartDate = Regex.Match(taxesValuesPageText, @"(?<=I УТВРЂУЈЕ СЕ аконтационо задужење доприноса за обавезно социјално осигурање за \nпериод од)\s+(.*?)\s+(?=до)").Value.Substring(1, 10);
                 var firstMonthEndDate = Regex.Match(taxesValuesPageText, @"(?<=I УТВРЂУЈЕ СЕ аконтационо задужење доприноса за обавезно социјално осигурање за \nпериод од)\s+(.*?)\s+године(?=)").Value.Substring(16, 10);
                
-                var firstMonthPayments = Regex.Match(taxesValuesPageText, @"(?<=Јануар)\s+(.*?)\s+\n(?=)").Value.Split(" ").Select(x => x.Replace(".", "")).ToArray();
-                var regularPayments = Regex.Match(taxesValuesPageText, @"(?<=Фебруар)\s+(.*?)\s+\n(?=)").Value.Split(" ").Select(x => x.Replace(".", "")).ToArray();
+                var firstMonthPayments = Regex.Match(taxesValuesPageText, @"(?<=Јануар)\s+(.*?)\s+\n(?=)").Value.Split(" ").Select(x => x.Replace(".", "").Replace(",", ".")).ToArray();
+                var regularPayments = Regex.Match(taxesValuesPageText, @"(?<=Фебруар)\s+(.*?)\s+\n(?=)").Value.Split(" ").Select(x => x.Replace(".", "").Replace(",", ".")).ToArray();
 
                 taxesResult.FirstYear = int.Parse(firstYear);
-                taxesResult.FirstMonthStartDate = DateTime.Parse(firstMonthStartDate);
-                taxesResult.FirstMonthEndDate = DateTime.Parse(firstMonthEndDate);
+                taxesResult.FirstMonthStartDate = DateTime.ParseExact(firstMonthStartDate, "dd.mm.yyyy", CultureInfo.InvariantCulture);
+                taxesResult.FirstMonthEndDate = DateTime.ParseExact(firstMonthEndDate, "dd.mm.yyyy", CultureInfo.InvariantCulture);
                 
                 taxesResult.FirstMonthPensionPayment = decimal.Parse(firstMonthPayments[2]);
                 taxesResult.FirstMonthHealthPayment = decimal.Parse(firstMonthPayments[3]);

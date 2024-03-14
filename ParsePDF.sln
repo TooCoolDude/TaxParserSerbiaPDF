@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParsePDF", "ParsePDF\ParseP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxParserSerbiaPDF", "TaxParserSerbiaPDF\TaxParserSerbiaPDF.csproj", "{DD57F23F-4D94-4F4B-AEE8-37B92618E8E2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParserSerbiaPDF_WPF", "ParserSerbiaPDF_WPF\ParserSerbiaPDF_WPF.csproj", "{4FD5E2E3-60F8-4EE7-BD49-5C90902E8676}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebUI", "BlazorWebUI\BlazorWebUI.csproj", "{724B2DCC-B029-4F0F-8E32-510494240D05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{DD57F23F-4D94-4F4B-AEE8-37B92618E8E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD57F23F-4D94-4F4B-AEE8-37B92618E8E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD57F23F-4D94-4F4B-AEE8-37B92618E8E2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4FD5E2E3-60F8-4EE7-BD49-5C90902E8676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4FD5E2E3-60F8-4EE7-BD49-5C90902E8676}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4FD5E2E3-60F8-4EE7-BD49-5C90902E8676}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4FD5E2E3-60F8-4EE7-BD49-5C90902E8676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{724B2DCC-B029-4F0F-8E32-510494240D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{724B2DCC-B029-4F0F-8E32-510494240D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{724B2DCC-B029-4F0F-8E32-510494240D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{724B2DCC-B029-4F0F-8E32-510494240D05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

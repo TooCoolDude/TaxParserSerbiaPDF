@@ -1,0 +1,207 @@
+﻿@page "/"
+
+<PageTitle>Tax reader Serbia</PageTitle>
+<MudLoading @bind-Loading="isLoading" Overlap="true" LoaderType="LoaderType.Circular" Darken="true" ClassText="@(true ? "white-text" : null)">
+    <MudPaper Class="p-3 m-2">
+        <MudStack Row Justify="Justify.Center">   
+            <MudStack Style="width: 100%;">
+                <MudImage Width="700" ObjectFit="ObjectFit.Contain" Src="/income.jpg"></MudImage>
+                <MudFileUpload T="IBrowserFile"
+                               AppendMultipleFiles
+                               OnFilesChanged="LoadIncomeTaxPdfFile"
+                               Hidden="@false"
+                               InputClass="absolute mud-width-full mud-height-full overflow-hidden z-20"
+                               InputStyle="opacity:0"
+                               @ondragenter="@SetDragIncomeClass"
+                               @ondragleave="@ClearDragIncomeClass"
+                               @ondragend="@ClearDragIncomeClass">
+                    <ButtonTemplate>
+                        <MudPaper Height="300px"
+                                  Outlined="true"
+                                  Class="@_dragIncomeClass">
+                            <MudText Typo="Typo.h6">
+                                Drag and drop income tax PDF
+                            </MudText>
+                            @if (_fileIncomeName != string.Empty)
+                            {
+                                <MudChip Color="Color.Dark" Text="@_fileIncomeName" />
+                            }
+                        </MudPaper>
+                    </ButtonTemplate>
+                </MudFileUpload>
+            </MudStack>
+            <MudStack Style="width: 100%;">
+                <MudImage Width="700" ObjectFit="ObjectFit.Contain" Src="/social.jpg"></MudImage>
+                <MudFileUpload T="IBrowserFile"
+                               AppendMultipleFiles
+                               OnFilesChanged="LoadSocialTaxPdfFile"
+                               Hidden="@false"
+                               InputClass="absolute mud-width-full mud-height-full overflow-hidden z-20"
+                               InputStyle="opacity:0"
+                               @ondragenter="@SetDragSocialClass"
+                               @ondragleave="@ClearDragSocialClass"
+                               @ondragend="@ClearDragSocialClass">
+                    <ButtonTemplate>
+                        <MudPaper Height="300px"
+                                  Outlined="true"
+                                  Class="@_dragSocialClass">
+                            <MudText Typo="Typo.h6">
+                                Drag and drop social tax PDF
+                            </MudText>
+                            @if (_fileSocialName != string.Empty)
+                            {
+                                <MudChip Color="Color.Dark" Text="@_fileSocialName" />
+                            }
+                        </MudPaper>
+                    </ButtonTemplate>
+                </MudFileUpload>
+            </MudStack>
+        </MudStack>
+    </MudPaper>
+    <MudPaper id="report-div" Class="m-2 p-2">
+        <MudStack Row Justify="Justify.Center">
+            <MudText Typo="Typo.h2">Tax report</MudText>
+        </MudStack>
+        <MudStack Row Justify="Justify.Center">
+            @if (IncomeTaxResult != null)
+            {
+                <MudPaper Class="m-2 p-2">
+                    <MudStack Justify="Justify.Center">
+                        <MudText Typo="Typo.h3">Income tax</MudText>
+                        <MudText Typo="Typo.h6">First year: @IncomeTaxResult.FirstYear </MudText>
+                        <MudText Typo="Typo.h6">First month: @IncomeTaxResult.FirstMonthStartDate.ToString("dd.mm.yyyy") - @IncomeTaxResult.FirstMonthEndDate.ToString("dd.mm.yyyy")</MudText>
+                        <MudText Typo="Typo.h6">First month income payment: @IncomeTaxResult.FirstMonthPayment </MudText>
+                        <MudText Typo="Typo.h6">Regular income payment: @IncomeTaxResult.RegularPayment </MudText>
+                        <MudText Typo="Typo.h6">QR code for first year (@IncomeTaxResult.FirstYear) payment:</MudText>
+                        <MudImage Style="image-rendering: pixelated;width: 300px; height: 300px;" Src="@string.Format("data:image/png;base64,{0}", Convert.ToBase64String(IncomeTaxResult.FirstYearQRpng))"></MudImage>
+                        <MudText Typo="Typo.h6">QR code for next year (@(IncomeTaxResult.FirstYear + 1)) payment:</MudText>
+                        <MudImage Style="image-rendering: pixelated;width: 300px; height: 300px;" Src="@string.Format("data:image/png;base64,{0}", Convert.ToBase64String(IncomeTaxResult.NextYearQRpng))"></MudImage>
+                    </MudStack>
+                </MudPaper>
+            }
+            @if (SocialTaxesResult != null)
+            {
+                <MudPaper Class="m-2 p-2">
+                    <MudStack Justify="Justify.Center">
+                        <MudText Typo="Typo.h3">Health tax</MudText>
+                        <MudText Typo="Typo.h6">First year: @SocialTaxesResult.FirstYear </MudText>
+                        <MudText Typo="Typo.h6">First month: @SocialTaxesResult.FirstMonthStartDate.ToString("dd.mm.yyyy") - @SocialTaxesResult.FirstMonthEndDate.ToString("dd.mm.yyyy")</MudText>
+
+                        <MudText Typo="Typo.h6">First month health payment: @SocialTaxesResult.FirstMonthHealthPayment </MudText>
+                        <MudText Typo="Typo.h6">Regular health payment: @SocialTaxesResult.RegularHealthPayment </MudText>
+                        <MudText Typo="Typo.h6">QR code for first year (@SocialTaxesResult.FirstYear) payment:</MudText>
+                        <MudImage Style="image-rendering: pixelated;width: 300px; height: 300px;" Src="@string.Format("data:image/png;base64,{0}", Convert.ToBase64String(SocialTaxesResult.FirstYearHealthQRpng))"></MudImage>
+                        <MudText Typo="Typo.h6">QR code for next year (@(SocialTaxesResult.FirstYear + 1)) payment:</MudText>
+                        <MudImage Style="image-rendering: pixelated;width: 300px; height: 300px;" Src="@string.Format("data:image/png;base64,{0}", Convert.ToBase64String(SocialTaxesResult.NextYearHealthQRpng))"></MudImage>
+                    </MudStack>
+                </MudPaper>
+
+                <MudPaper Class="m-2 p-2">
+                    <MudStack Justify="Justify.Center">
+                        <MudText Typo="Typo.h3">Pension tax</MudText>
+                        <MudText Typo="Typo.h6">First year: @SocialTaxesResult.FirstYear </MudText>
+                        <MudText Typo="Typo.h6">First month: @SocialTaxesResult.FirstMonthStartDate.ToString("dd.mm.yyyy") - @SocialTaxesResult.FirstMonthEndDate.ToString("dd.mm.yyyy")</MudText>
+
+                        <MudText Typo="Typo.h6">First month pension payment: @SocialTaxesResult.FirstMonthPensionPayment </MudText>
+                        <MudText Typo="Typo.h6">Regular pension payment: @SocialTaxesResult.RegularPensionPayment </MudText>
+                        <MudText Typo="Typo.h6">QR code for first year (@SocialTaxesResult.FirstYear) payment:</MudText>
+                        <MudImage Style="image-rendering: pixelated;width: 300px; height: 300px;" Src="@string.Format("data:image/png;base64,{0}", Convert.ToBase64String(SocialTaxesResult.FirstYearPensionQRpng))"></MudImage>
+                        <MudText Typo="Typo.h6">QR code for next year (@(SocialTaxesResult.FirstYear + 1)) payment:</MudText>
+                        <MudImage Style="image-rendering: pixelated;width: 300px; height: 300px;" Src="@string.Format("data:image/png;base64,{0}", Convert.ToBase64String(SocialTaxesResult.NextYearPensionQRpng))"></MudImage>
+                    </MudStack>
+                </MudPaper>
+
+                <MudPaper Class="m-2 p-2">
+                    <MudStack Justify="Justify.Center">
+                        <MudText Typo="Typo.h3">Unemployment tax</MudText>
+                        <MudText Typo="Typo.h6">First year: @SocialTaxesResult.FirstYear </MudText>
+                        <MudText Typo="Typo.h6">First month: @SocialTaxesResult.FirstMonthStartDate.ToString("dd.mm.yyyy") - @SocialTaxesResult.FirstMonthEndDate.ToString("dd.mm.yyyy")</MudText>
+
+                        <MudText Typo="Typo.h6">First month unemployment payment: @SocialTaxesResult.FirstMonthUnemploymentPayment </MudText>
+                        <MudText Typo="Typo.h6">Regular unemployment payment: @SocialTaxesResult.RegularUnemploymentPayment </MudText>
+                        <MudText Typo="Typo.h6">QR code for first year (@SocialTaxesResult.FirstYear) payment:</MudText>
+                        <MudImage Style="image-rendering: pixelated;width: 300px; height: 300px;" Src="@string.Format("data:image/png;base64,{0}", Convert.ToBase64String(SocialTaxesResult.FirstYearUnemploymentQRpng))"></MudImage>
+                        <MudText Typo="Typo.h6">QR code for next year (@(SocialTaxesResult.FirstYear + 1)) payment:</MudText>
+                        <MudImage Style="image-rendering: pixelated;width: 300px; height: 300px;" Src="@string.Format("data:image/png;base64,{0}", Convert.ToBase64String(SocialTaxesResult.NextYearUnemploymentQRpng))"></MudImage>
+                    </MudStack>
+                </MudPaper>
+
+
+            }
+        </MudStack>
+    </MudPaper>
+</MudLoading>
+@code {
+    private bool isLoading;
+    private IBrowserFile IncomeTaxPdfFile;
+    private IBrowserFile SocialTaxesPdfFile;
+
+    private IIncomeTaxResult IncomeTaxResult;
+    private ISocialTaxesResult SocialTaxesResult;
+    private async Task LoadIncomeTaxPdfFile(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        try
+        {
+            IncomeTaxPdfFile = e.GetMultipleFiles(1).First();
+            _fileIncomeName = IncomeTaxPdfFile.Name;
+            var stream = IncomeTaxPdfFile.OpenReadStream();
+            var memoryStream = await ToMemoryStreamAsync(stream);
+            IncomeTaxResult = PdfParser.GetIncomeTaxResult(memoryStream);
+        }
+        catch (Exception ex)
+        {
+            IncomeTaxResult = null;
+            Console.WriteLine(ex.Message);
+            isLoading = false;
+            return;
+        }
+        isLoading = false;
+    }
+    async Task<MemoryStream> ToMemoryStreamAsync(Stream stream)
+    {
+        var memoryStream = new MemoryStream();
+        await stream.CopyToAsync(memoryStream);
+        memoryStream.Position = 0;
+        return memoryStream;
+    }
+
+
+    private const string DefaultDragClass = "relative rounded-lg border-2 border-dashed pa-4 mt-4 mud-width-full mud-height-full z-10";
+    private string _dragIncomeClass = DefaultDragClass;
+    private string _dragSocialClass = DefaultDragClass;
+    private string _fileIncomeName = string.Empty;
+    private string _fileSocialName = string.Empty;
+
+    private async Task LoadSocialTaxPdfFile(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        try
+        {
+            SocialTaxesPdfFile = e.GetMultipleFiles(1).First();
+            _fileSocialName = SocialTaxesPdfFile.Name;
+            var stream = SocialTaxesPdfFile.OpenReadStream();
+            var memoryStream = await ToMemoryStreamAsync(stream);
+            SocialTaxesResult = PdfParser.GetSocialTaxesResult(memoryStream);
+        }
+        catch (Exception ex)
+        {
+            SocialTaxesResult = null;
+            Console.WriteLine(ex.Message);
+            isLoading = false;
+            return;
+        }
+        isLoading = false;
+    }
+    private void SetDragIncomeClass()
+        => _dragIncomeClass = $"{DefaultDragClass} mud-border-primary";
+
+    private void ClearDragIncomeClass()
+        => _dragIncomeClass = DefaultDragClass;
+
+    private void SetDragSocialClass()
+    => _dragSocialClass = $"{DefaultDragClass} mud-border-primary";
+
+    private void ClearDragSocialClass()
+        => _dragSocialClass = DefaultDragClass;
+}
