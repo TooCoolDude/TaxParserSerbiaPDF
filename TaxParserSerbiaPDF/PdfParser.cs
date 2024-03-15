@@ -48,8 +48,8 @@ public static class PdfParser
                 taxResult.NextYearQRpng = base64Images[1];
                 taxResult.FirstMonthStartDate = DateTime.ParseExact(firstMonthStartDate,"dd.mm.yyyy", CultureInfo.InvariantCulture);
                 taxResult.FirstMonthEndDate = DateTime.ParseExact(firstMonthEndDate, "dd.mm.yyyy", CultureInfo.InvariantCulture);
-                taxResult.FirstMonthPayment = decimal.Parse(firstMonthPayment);
-                taxResult.RegularPayment = decimal.Parse(regularPayment);
+                taxResult.FirstMonthPayment = decimal.Parse(firstMonthPayment, NumberStyles.Any, CultureInfo.InvariantCulture);
+                taxResult.RegularPayment = decimal.Parse(regularPayment, NumberStyles.Any, CultureInfo.InvariantCulture);
             }
         }
 
@@ -96,13 +96,13 @@ public static class PdfParser
                 taxesResult.FirstMonthStartDate = DateTime.ParseExact(firstMonthStartDate, "dd.mm.yyyy", CultureInfo.InvariantCulture);
                 taxesResult.FirstMonthEndDate = DateTime.ParseExact(firstMonthEndDate, "dd.mm.yyyy", CultureInfo.InvariantCulture);
                 
-                taxesResult.FirstMonthPensionPayment = decimal.Parse(firstMonthPayments[2]);
-                taxesResult.FirstMonthHealthPayment = decimal.Parse(firstMonthPayments[3]);
-                taxesResult.FirstMonthUnemploymentPayment = decimal.Parse(firstMonthPayments[4]);
+                taxesResult.FirstMonthPensionPayment = decimal.Parse(firstMonthPayments[2], NumberStyles.Any, CultureInfo.InvariantCulture);
+                taxesResult.FirstMonthHealthPayment = decimal.Parse(firstMonthPayments[3], NumberStyles.Any, CultureInfo.InvariantCulture);
+                taxesResult.FirstMonthUnemploymentPayment = decimal.Parse(firstMonthPayments[4], NumberStyles.Any, CultureInfo.InvariantCulture);
 
-                taxesResult.RegularPensionPayment = decimal.Parse(regularPayments[2]);
-                taxesResult.RegularHealthPayment = decimal.Parse(regularPayments[3]);
-                taxesResult.RegularUnemploymentPayment = decimal.Parse(regularPayments[4]);
+                taxesResult.RegularPensionPayment = decimal.Parse(regularPayments[2], NumberStyles.Any, CultureInfo.InvariantCulture);
+                taxesResult.RegularHealthPayment = decimal.Parse(regularPayments[3], NumberStyles.Any, CultureInfo.InvariantCulture);
+                taxesResult.RegularUnemploymentPayment = decimal.Parse(regularPayments[4], NumberStyles.Any, CultureInfo.InvariantCulture);
 
                 taxesResult.FirstYearPensionQRpng = QRsFirstYear[0];
                 taxesResult.FirstYearHealthQRpng = QRsFirstYear[1];
