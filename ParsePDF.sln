@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34601.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParsePDF", "ParsePDF\ParsePDF.csproj", "{EF80021C-AACE-44C2-B267-870D8D2CD040}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaxParserSerbiaPDF", "TaxParserSerbiaPDF\TaxParserSerbiaPDF.csproj", "{DD57F23F-4D94-4F4B-AEE8-37B92618E8E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebUI", "BlazorWebUI\BlazorWebUI.csproj", "{724B2DCC-B029-4F0F-8E32-510494240D05}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EF80021C-AACE-44C2-B267-870D8D2CD040}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF80021C-AACE-44C2-B267-870D8D2CD040}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF80021C-AACE-44C2-B267-870D8D2CD040}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF80021C-AACE-44C2-B267-870D8D2CD040}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DD57F23F-4D94-4F4B-AEE8-37B92618E8E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DD57F23F-4D94-4F4B-AEE8-37B92618E8E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD57F23F-4D94-4F4B-AEE8-37B92618E8E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
