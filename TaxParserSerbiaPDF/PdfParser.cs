@@ -83,7 +83,7 @@ public static class PdfParser
                 var QRsFirstYear = GetQRsPNG(images1);
 
                 var images2 = QRsPage2.GetImages().ToArray();
-                var QEsNextYear = GetQRsPNG(images2);
+                var QRsNextYear = GetQRsPNG(images2);
 
                 var firstYear = Regex.Matches(QRsPageText1, @"(?<=ПРИМЕРИ ПОПУЊЕНИХ УПЛАТНИЦА ЗА ПЛАЋАЊЕ ДОПРИНОСА ЗА)\s+(.*?)\s+(?=ГОДИНУ)")[0].Value.Substring(1, 4);
                 var firstMonthStartDate = Regex.Match(taxesValuesPageText, @"(?<=I УТВРЂУЈЕ СЕ аконтационо задужење доприноса за обавезно социјално осигурање за \nпериод од)\s+(.*?)\s+(?=до)").Value.Substring(1, 10);
@@ -108,9 +108,9 @@ public static class PdfParser
                 taxesResult.FirstYearHealthQRpng = QRsFirstYear[1];
                 taxesResult.FirstYearUnemploymentQRpng = QRsFirstYear[2];
 
-                taxesResult.NextYearPensionQRpng = QEsNextYear[0];
-                taxesResult.NextYearHealthQRpng = QEsNextYear[1];
-                taxesResult.NextYearUnemploymentQRpng = QEsNextYear[2];
+                taxesResult.NextYearPensionQRpng = QRsNextYear[0];
+                taxesResult.NextYearHealthQRpng = QRsNextYear[1];
+                taxesResult.NextYearUnemploymentQRpng = QRsNextYear[2];
             }
         }
 
