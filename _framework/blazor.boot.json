@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BlazorWebUI",
   "resources": {
-    "hash": "sha256-R2sYmWxAQwnG3ugacPo7/LktD3Jl0s9SB6ulQv5TUR0=",
+    "hash": "sha256-1NUZZmG+As8p7I+6TMZNiQcsPdtgK13l3pTxOQ0Vz48=",
     "jsModuleNative": {
       "dotnet.native.8.0.2.1adt5km2zn.js": "sha256-seJmlaD59z/9+hOo7s4L7yKtDYBLBnQIIEfqDBpxzrA="
     },
@@ -17,7 +17,7 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "BlazorWebUI.wasm": "sha256-x16siaC7MMmUc5jbxOOSiIsk5MtYrzMzIvkVm8aPvbE=",
+      "BlazorWebUI.wasm": "sha256-x/JQrpFIoB7yxjd1Cnx6uevflq5WzeJ/4mrbf0y4GsQ=",
       "CodeBeam.MudExtensions.wasm": "sha256-q1ClAgIEfn3LHTDH+XteU8aRPOgEj6624hb5sqNA4Mg=",
       "CsvHelper.wasm": "sha256-lDU7rlMVd75pEG6FvGjcsp5ZYOs97VGGfZgKttNSKRg=",
       "Microsoft.AspNetCore.Components.Forms.wasm": "sha256-1GSySseuiHa7aO86QBgMlbn4mNnfBmv8+JJbZNAus+c=",

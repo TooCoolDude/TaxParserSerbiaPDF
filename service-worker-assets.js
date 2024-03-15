@@ -5,7 +5,7 @@
       "url": "css\/app.css"
     },
     {
-      "hash": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=",
+      "hash": "sha256-SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7\/p4nS6D\/0=",
       "url": "css\/bootstrap\/bootstrap.min.css"
     },
     {
@@ -29,7 +29,7 @@
       "url": "income.jpg"
     },
     {
-      "hash": "sha256-gerp6yYbOAkvCc29gTVjU8zhpT5c\/T9vFWC11ar9Mi4=",
+      "hash": "sha256-NZxy781Tz99760xps8cLafysjNQZs91kRIECN6GgSjc=",
       "url": "index.html"
     },
     {
@@ -65,7 +65,7 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-JgpAJnr\/zKp0LFfdZrIQ0OjOfysp2Zzr1qFmz44eocw=",
+      "hash": "sha256-4lvExkt2jsxmB03FYMb9cL5z1qQex2lnbJnwDNi+GiY=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -77,7 +77,7 @@
       "url": "_framework\/dotnet.native.wasm"
     },
     {
-      "hash": "sha256-x16siaC7MMmUc5jbxOOSiIsk5MtYrzMzIvkVm8aPvbE=",
+      "hash": "sha256-x\/JQrpFIoB7yxjd1Cnx6uevflq5WzeJ\/4mrbf0y4GsQ=",
       "url": "_framework\/BlazorWebUI.wasm"
     },
     {
@@ -393,5 +393,5 @@
       "url": "_content\/MudBlazor\/MudBlazor.min.js"
     }
   ],
-  "version": "yOtv43Q6"
+  "version": "SEHc3HKH"
 };
