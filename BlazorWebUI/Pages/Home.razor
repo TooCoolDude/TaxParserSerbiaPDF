@@ -69,8 +69,11 @@
                     <MudStack Justify="Justify.Center">
                         <MudText Typo="Typo.h3">Income tax</MudText>
                         <MudText Typo="Typo.h6">First year: @IncomeTaxResult.FirstYear </MudText>
-                        <MudText Typo="Typo.h6">First month: @IncomeTaxResult.FirstMonthStartDate.ToString("dd.mm.yyyy") - @IncomeTaxResult.FirstMonthEndDate.ToString("dd.mm.yyyy")</MudText>
-                        <MudText Typo="Typo.h6">First month income payment: @Math.Ceiling(IncomeTaxResult.FirstMonthPayment) </MudText>
+                        <MudText Typo="Typo.h6">Period: @IncomeTaxResult.FirstMonthStartDate.ToString("dd.mm.yyyy") - @IncomeTaxResult.FirstMonthEndDate.ToString("dd.mm.yyyy")</MudText>
+                        @if (IncomeTaxResult.FirstMonthPayment != IncomeTaxResult.RegularPayment)
+                        {
+                            <MudText Typo="Typo.h6">First month income payment: @Math.Ceiling(IncomeTaxResult.FirstMonthPayment) </MudText>
+                        }
                         <MudText Typo="Typo.h6">Regular income payment: @Math.Ceiling(IncomeTaxResult.RegularPayment) </MudText>
                         <MudText Typo="Typo.h6">QR code for first year (@IncomeTaxResult.FirstYear) payment:</MudText>
                         <MudImage Style="image-rendering: pixelated;width: 300px; height: 300px;" Src="@string.Format("data:image/png;base64,{0}", Convert.ToBase64String(IncomeTaxResult.FirstYearQRpng))"></MudImage>
@@ -85,9 +88,11 @@
                     <MudStack Justify="Justify.Center">
                         <MudText Typo="Typo.h3">Health tax</MudText>
                         <MudText Typo="Typo.h6">First year: @SocialTaxesResult.FirstYear </MudText>
-                        <MudText Typo="Typo.h6">First month: @SocialTaxesResult.FirstMonthStartDate.ToString("dd.mm.yyyy") - @SocialTaxesResult.FirstMonthEndDate.ToString("dd.mm.yyyy")</MudText>
-
-                        <MudText Typo="Typo.h6">First month health payment: @Math.Ceiling(SocialTaxesResult.FirstMonthHealthPayment) </MudText>
+                        <MudText Typo="Typo.h6">Period: @SocialTaxesResult.FirstMonthStartDate.ToString("dd.mm.yyyy") - @SocialTaxesResult.FirstMonthEndDate.ToString("dd.mm.yyyy")</MudText>
+                        @if (SocialTaxesResult.FirstMonthHealthPayment != SocialTaxesResult.RegularHealthPayment)
+                        {
+                            <MudText Typo="Typo.h6">First month health payment: @Math.Ceiling(SocialTaxesResult.FirstMonthHealthPayment) </MudText>
+                        }
                         <MudText Typo="Typo.h6">Regular health payment: @Math.Ceiling(SocialTaxesResult.RegularHealthPayment) </MudText>
                         <MudText Typo="Typo.h6">QR code for first year (@SocialTaxesResult.FirstYear) payment:</MudText>
                         <MudImage Style="image-rendering: pixelated;width: 300px; height: 300px;" Src="@string.Format("data:image/png;base64,{0}", Convert.ToBase64String(SocialTaxesResult.FirstYearHealthQRpng))"></MudImage>
@@ -100,9 +105,11 @@
                     <MudStack Justify="Justify.Center">
                         <MudText Typo="Typo.h3">Pension tax</MudText>
                         <MudText Typo="Typo.h6">First year: @SocialTaxesResult.FirstYear </MudText>
-                        <MudText Typo="Typo.h6">First month: @SocialTaxesResult.FirstMonthStartDate.ToString("dd.mm.yyyy") - @SocialTaxesResult.FirstMonthEndDate.ToString("dd.mm.yyyy")</MudText>
-
-                        <MudText Typo="Typo.h6">First month pension payment: @Math.Ceiling(SocialTaxesResult.FirstMonthPensionPayment) </MudText>
+                        <MudText Typo="Typo.h6">Period: @SocialTaxesResult.FirstMonthStartDate.ToString("dd.mm.yyyy") - @SocialTaxesResult.FirstMonthEndDate.ToString("dd.mm.yyyy")</MudText>
+                        @if (SocialTaxesResult.FirstMonthPensionPayment != SocialTaxesResult.RegularPensionPayment)
+                        {
+                            <MudText Typo="Typo.h6">First month pension payment: @Math.Ceiling(SocialTaxesResult.FirstMonthPensionPayment) </MudText>
+                        }
                         <MudText Typo="Typo.h6">Regular pension payment: @Math.Ceiling(SocialTaxesResult.RegularPensionPayment) </MudText>
                         <MudText Typo="Typo.h6">QR code for first year (@SocialTaxesResult.FirstYear) payment:</MudText>
                         <MudImage Style="image-rendering: pixelated;width: 300px; height: 300px;" Src="@string.Format("data:image/png;base64,{0}", Convert.ToBase64String(SocialTaxesResult.FirstYearPensionQRpng))"></MudImage>
@@ -115,9 +122,11 @@
                     <MudStack Justify="Justify.Center">
                         <MudText Typo="Typo.h3">Unemployment tax</MudText>
                         <MudText Typo="Typo.h6">First year: @SocialTaxesResult.FirstYear </MudText>
-                        <MudText Typo="Typo.h6">First month: @SocialTaxesResult.FirstMonthStartDate.ToString("dd.mm.yyyy") - @SocialTaxesResult.FirstMonthEndDate.ToString("dd.mm.yyyy")</MudText>
-
-                        <MudText Typo="Typo.h6">First month unemployment payment: @Math.Ceiling(SocialTaxesResult.FirstMonthUnemploymentPayment) </MudText>
+                        <MudText Typo="Typo.h6">Period: @SocialTaxesResult.FirstMonthStartDate.ToString("dd.mm.yyyy") - @SocialTaxesResult.FirstMonthEndDate.ToString("dd.mm.yyyy")</MudText>
+                        @if (SocialTaxesResult.FirstMonthUnemploymentPayment != SocialTaxesResult.RegularUnemploymentPayment)
+                        {
+                            <MudText Typo="Typo.h6">First month unemployment payment: @Math.Ceiling(SocialTaxesResult.FirstMonthUnemploymentPayment) </MudText>
+                        }
                         <MudText Typo="Typo.h6">Regular unemployment payment: @Math.Ceiling(SocialTaxesResult.RegularUnemploymentPayment) </MudText>
                         <MudText Typo="Typo.h6">QR code for first year (@SocialTaxesResult.FirstYear) payment:</MudText>
                         <MudImage Style="image-rendering: pixelated;width: 300px; height: 300px;" Src="@string.Format("data:image/png;base64,{0}", Convert.ToBase64String(SocialTaxesResult.FirstYearUnemploymentQRpng))"></MudImage>

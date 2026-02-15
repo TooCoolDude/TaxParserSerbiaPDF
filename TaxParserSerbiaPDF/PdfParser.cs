@@ -28,20 +28,27 @@ public static class PdfParser
             {
                 var pages = doc.GetPages().ToArray();
 
-                var taxesValuesPage = pages[0];
-                var QRsPage = pages[3];
+                var taxesValuesPage = pages.First();
+                var QRsPage = pages.Last();
 
-                var taxesValuesPageText = GetPageText(taxesValuesPage);
-                var QRsPageText = GetPageText(QRsPage);
+                var taxesValuesPageText = FixStringChars(GetPageText(taxesValuesPage));
+                var QRsPageText = FixStringChars(GetPageText(QRsPage));
 
                 var images = QRsPage.GetImages().ToArray();
                 var base64Images = GetQRsPNG(images);
 
-                var firstYear = Regex.Matches(QRsPageText, @"(?<=Порез на паушални приход зa)\s+(.*?)\s+(?=97)")[0].Value.Substring(1, 4);
-                var firstMonthStartDate = Regex.Match(taxesValuesPageText, @"(?<=Обрачуната аконтација пореза за период \nод)\s+(.*?)\s+(?=до)").Value.Substring(1, 10);
-                var firstMonthEndDate = Regex.Match(taxesValuesPageText, @"(?<=Обрачуната аконтација пореза за период \nод)\s+(.*?)\s+\((?=)").Value.Substring(16, 10);
-                var firstMonthPayment = Regex.Match(taxesValuesPageText, @"(?<=Обрачуната аконтација пореза за период \nод)\s+(.*?)\s+(?=3\.)").Value.Split(" ")[7].Replace(".", "").Replace(",", ".");
-                var regularPayment = Regex.Match(taxesValuesPageText, @"(?<=пореза на доходак грађана)\s+(.*?)\s+(?=Aконтациja)").Value.Split(" ")[4].Replace(".", "").Replace(",", ".");
+                var firstYear = Regex.Matches(QRsPageText, @$"(?<={FixStringChars("Порез на паушални приход за")})\s+(.*?)\s+(?=97)")[0].Value.Substring(1, 4);
+                
+                var firstMonthStartDate = Regex.Match(taxesValuesPageText, @$"(?<={FixStringChars("приход за период од")})\s+(.*?)\s+(?={FixStringChars("до")})").Value.Substring(1, 10);
+                
+                var firstMonthEndDate = Regex.Match(taxesValuesPageText, @$"(?<={FixStringChars("приход за период од")})\s+(.*?)\s+{FixStringChars("године")}(?=)").Value.Substring(16, 10);
+                
+                var firstMonthPayment = Regex.Match(taxesValuesPageText, @$"(?<={Regex.Escape(FixStringChars("(1. x 10%)"))})(.*?)(?=\n)").Value.Trim().Replace(".", "").Replace(",", ".");
+                
+                var regularPaymentMatch = Regex.Match(taxesValuesPageText, @$"(?<={FixStringChars("пореза на доходак грађана")})\s+(.*?)\s+(?={FixStringChars("Aконтациja")})");
+                var regularPayment = regularPaymentMatch.Success ? 
+                    Regex.Match(taxesValuesPageText, @$"(?<={FixStringChars("пореза на доходак грађана")})\s+(.*?)\s+(?={FixStringChars("Aконтациja")})").Value.Split(" ")[4].Replace(".", "").Replace(",", ".")
+                    : firstMonthPayment;
 
                 taxResult.FirstYear = int.Parse(firstYear);
                 taxResult.FirstYearQRpng = base64Images[0];
@@ -154,4 +161,23 @@ public static class PdfParser
             
         return text;
     }
+
+    private static string FixStringChars(string input)
+    {
+        StringBuilder builder = new StringBuilder(input);
+
+        var pairs = EnToRuChars;
+        foreach (char c in pairs.Keys) 
+        {
+            builder.Replace(c, pairs[c]);
+        }
+
+        return builder.ToString();
+    }
+
+    private static Dictionary<char, char> EnToRuChars => new Dictionary<char, char> 
+    {
+        ['a'] = 'а',
+        ['A'] = 'А'
+    };
 }
