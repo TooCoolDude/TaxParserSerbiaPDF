@@ -1,0 +1,39 @@
+name: Deploy Blazor to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master  # пуши в master триггерят билд
+
+permissions:
+  contents: write  # нужен для push в gh-pages
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Чекаутим код master
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      # 2. Устанавливаем .NET 8
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0
+
+      # 3. Публикуем Blazor проект
+      - name: Publish Blazor
+        run: dotnet publish BlazorWebUI/BlazorWebUI.csproj -c Release -o publish
+
+      # 4. Добавляем .nojekyll, чтобы GitHub Pages не ломал _framework
+      - name: Add .nojekyll
+        run: touch publish/wwwroot/.nojekyll
+
+      # 5. Деплойим в gh-pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: publish/wwwroot
