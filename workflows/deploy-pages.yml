@@ -1,0 +1,35 @@
+name: Deploy Blazor to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0
+
+      - name: Publish Blazor
+        run: dotnet publish BlazorWebUI/BlazorWebUI.csproj -c Release -o publish
+
+      - name: Add .nojekyll
+        run: touch publish/wwwroot/.nojekyll
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: publish/wwwroot
