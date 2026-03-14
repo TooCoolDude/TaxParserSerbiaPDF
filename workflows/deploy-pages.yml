@@ -3,7 +3,7 @@ name: Deploy Blazor to GitHub Pages
 on:
   push:
     branches:
-      - main  # пуши в main триггерят билд
+      - master  # пуши в master триггерят билд
 
 permissions:
   contents: write  # нужен для push в gh-pages
@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Чекаутим код main
+      # 1. Чекаутим код master
       - name: Checkout source
         uses: actions/checkout@v4
 
