@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "g0E2EtWb",
+  "version": "Ro6W2ygD",
   "assets": [
     {
       "hash": "sha256-viBNw0jZl9hjoChL/cGn3WwsxfnMWyOIkVlra4c3Hnc=",
@@ -26,7 +26,7 @@ self.assetsManifest = {
       "url": "_content/MudBlazor/MudBlazor.min.js"
     },
     {
-      "hash": "sha256-DGgVMlaDr8wdpuL3Wc1DRIijoifH1J/2WHG/A9uiblA=",
+      "hash": "sha256-bjEAcryfBrMyX97tHWLVLn6n93a3XS6p6FPG5PKxxmo=",
       "url": "_framework/BlazorWebUI.wasm"
     },
     {
@@ -286,7 +286,7 @@ self.assetsManifest = {
       "url": "_framework/System.wasm"
     },
     {
-      "hash": "sha256-V+kyWeakV0cYKwPiYk0YVUSLXtKOcjkDMWI29E+8iAg=",
+      "hash": "sha256-XnOqT/bnDJ3W+Dtqh12pZYF++Sjug1WeDLqwKgqTuTg=",
       "url": "_framework/TaxParserSerbiaPDF.wasm"
     },
     {
@@ -318,7 +318,7 @@ self.assetsManifest = {
       "url": "_framework/UglyToad.PdfPig.wasm"
     },
     {
-      "hash": "sha256-TOCsjEeLNT4YltECljs1LpVTyeQ+4B9F2G4zKeM6iw4=",
+      "hash": "sha256-2DvSiWQ8pc0fvgD1IVeDhQmoLGk4HGtIzh+s9i9k0HA=",
       "url": "_framework/blazor.boot.json"
     },
     {

@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "BlazorWebUI",
   "resources": {
-    "hash": "sha256-vny3zYTrvG06keKubzRt+Tvw2olkMA7sE7QZU/1ODgc=",
+    "hash": "sha256-TagPc2bTiYEpBt/vdMGFyct/ufHMuhBNGbPB6H68mdM=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-NljIbpK/1KCj0+knpX8U77Rbl5kTtfFIuFjK7AuczEw="
     },
@@ -18,7 +18,7 @@
     },
     "coreAssembly": {},
     "assembly": {
-      "BlazorWebUI.wasm": "sha256-DGgVMlaDr8wdpuL3Wc1DRIijoifH1J/2WHG/A9uiblA=",
+      "BlazorWebUI.wasm": "sha256-bjEAcryfBrMyX97tHWLVLn6n93a3XS6p6FPG5PKxxmo=",
       "CodeBeam.MudExtensions.wasm": "sha256-q1ClAgIEfn3LHTDH+XteU8aRPOgEj6624hb5sqNA4Mg=",
       "CsvHelper.wasm": "sha256-lDU7rlMVd75pEG6FvGjcsp5ZYOs97VGGfZgKttNSKRg=",
       "Microsoft.AspNetCore.Components.Forms.wasm": "sha256-9XGJo25jUEttYbLptBMCKgMa8ydW3/IozLLvOTq4iTk=",
@@ -83,7 +83,7 @@
       "System.Xml.XDocument.wasm": "sha256-jRgT0VBWumxwx4Pbk+uquXMwwkh4rc1PsL5HcEyr/hI=",
       "System.Xml.XmlSerializer.wasm": "sha256-qYVJa0R7kHcKcUF4BEVLljgM3PptNF5D8RzmqmwJj2E=",
       "System.wasm": "sha256-jXhnUNHzjjL7Plo7WcHuX7V5Dc/Umt+qmGGC+Js76SE=",
-      "TaxParserSerbiaPDF.wasm": "sha256-V+kyWeakV0cYKwPiYk0YVUSLXtKOcjkDMWI29E+8iAg=",
+      "TaxParserSerbiaPDF.wasm": "sha256-XnOqT/bnDJ3W+Dtqh12pZYF++Sjug1WeDLqwKgqTuTg=",
       "UglyToad.PdfPig.Core.wasm": "sha256-mKcdnF/8hBECDjkOIxMlYtNOMtRl5VAMd8+Yub2uceI=",
       "UglyToad.PdfPig.DocumentLayoutAnalysis.wasm": "sha256-xrgK0Kx745r0p09kHxOqG1vpwdRE2IZHERkvQdQrA7M=",
       "UglyToad.PdfPig.Fonts.wasm": "sha256-9viuZNr/87D8LuuBDJ7aS8Be+uHIC0jC1lvbqhOrmNw=",
